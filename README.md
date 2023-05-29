@@ -14,6 +14,6 @@ fourth link opens a basic user login. The user should enter all input fields and
 User can also use Enter key to do the same with the same condition. 
 
 The data is displayed with a remove button incase the user wants to change and enter new data. The user is alerted with a prompt that asks if the user wants to remove the data.
-if the response is yesm data is removed else it remains intact.
+if the response is yes data is removed else it remains intact.
 
 I will update further and add more links and depth to the page to make it more respnsive and user frendly.
