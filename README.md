@@ -4,7 +4,7 @@ This is a Basic Project showcasing how to work with React Router. I can use this
 
 In this project I have made a nav bar containing links that will render different components.
 
-this is not exactly done usibg styles fully , I have used bootstrap for layout and some class styles, will update it further should there be a need.
+this is not exactly done using styles fully , I have used bootstrap for layout and some class styles, will update it further should there be a need.
 
 first link opens to home page
 Second link opens to basic image and text
