@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./ToDo.css"
 
 const ToDo = () => {
@@ -6,12 +6,20 @@ const ToDo = () => {
     const[form,setForm] = useState({task : ""})
     const[Add,setAdd] = useState([]);
 
+    useEffect(()=> {
+        const getApi = async () => {
+            const TodoApi = await fetch("https://dummyjson.com/todos");
+            const TodoJson = await TodoApi.json();
+            setAdd(TodoJson.todos)
+        }
+        getApi();
+    },[]);
+
     const AddData = ()=>{
         if(form.task !== "")
         {
-        setAdd([...Add,{...form , completed : false}]);
+            setAdd([...Add,{task : form.task , completed : false}]);
         }
-        // setAdd([...Add,{task : form.task , completed : false}]);
         setForm({task : ""})
     }
 
@@ -53,8 +61,9 @@ const ToDo = () => {
             {
                 Add.map((e,i) => (
                      <div key={i} className= "d-flex justify-content-between m-3">
-                        <p className = {e.completed?"completed":""}>{e.task}</p>
-                        <input type = "checkbox" checked={e.completed} onClick={()=>taskValidater(i)}/>
+                        <p className = {e.completed?"completed":""}>{e.id}</p>
+                        <p className = {e.completed?"completed":""}>{e.todo}</p>
+                        <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
                         <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
                     </div>
                 ))
