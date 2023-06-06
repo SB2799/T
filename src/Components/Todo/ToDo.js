@@ -60,12 +60,20 @@ const ToDo = () => {
             <div className = "Todostyle shadow-lg">
             {
                 Add.map((e,i) => (
+                    <>
                      <div key={i} className= "d-flex justify-content-between m-3">
                         <p className = {e.completed?"completed":""}>{e.id}</p>
                         <p className = {e.completed?"completed":""}>{e.todo}</p>
                         <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
                         <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
                     </div>
+                    <div key={i} className= "d-flex justify-content-between m-3">
+                    <p className = {e.completed?"completed":""}>{e.i}</p>
+                    <p className = {e.completed?"completed":""}>{e.task}</p>
+                    <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
+                    <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
+                </div>
+                </>
                 ))
             }
             </div>
