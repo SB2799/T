@@ -7,8 +7,11 @@ const ToDo = () => {
     const[Add,setAdd] = useState([]);
 
     const AddData = ()=>{
-        // setAdd([...Add,{...form , completed : false}]);
-        setAdd([...Add,{task : form.task , completed : false}]);
+        if(form.task !== "")
+        {
+        setAdd([...Add,{...form , completed : false}]);
+        }
+        // setAdd([...Add,{task : form.task , completed : false}]);
         setForm({task : ""})
     }
 
