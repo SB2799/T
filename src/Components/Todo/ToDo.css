@@ -39,3 +39,11 @@ button{
     text-decoration: line-through;
     color:rgb(175, 131, 77)
 }
+
+.container{
+    width: 100%;
+}
+
+.row{
+    width:100%;
+}

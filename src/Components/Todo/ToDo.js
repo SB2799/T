@@ -5,21 +5,31 @@ const ToDo = () => {
 
     const[form,setForm] = useState({task : ""})
     const[Add,setAdd] = useState([]);
+    const[ID,setID] = useState(31);
 
     useEffect(()=> {
         const getApi = async () => {
             const TodoApi = await fetch("https://dummyjson.com/todos");
             const TodoJson = await TodoApi.json();
-            setAdd(TodoJson.todos)
+
+            const TodoJsonInput = TodoJson.todos.map((props)=>({
+                id : props.id,
+                task : props.todo,
+                completed : props.completed,
+            }))
+
+            setAdd(TodoJsonInput)
         }
         getApi();
     },[]);
 
     const AddData = ()=>{
+        // const newId = Add.length > 0 ? Add[Add.length - 1].id : 0;
         if(form.task !== "")
         {
-            setAdd([...Add,{task : form.task , completed : false}]);
+            setAdd([...Add,{id: ID, task : form.task , completed : false}]);
         }
+        setID(ID+1);
         setForm({task : ""})
     }
 
@@ -61,18 +71,20 @@ const ToDo = () => {
             {
                 Add.map((e,i) => (
                     <>
-                     <div key={i} className= "d-flex justify-content-between m-3">
+                     <div key={e.id} className= "d-flex justify-content-between m-3">
+                        <div className='col-xl-2 mr-2'>
                         <p className = {e.completed?"completed":""}>{e.id}</p>
-                        <p className = {e.completed?"completed":""}>{e.todo}</p>
+                        </div>
+                        <div className='col-xl-5 mr-2'>
+                        <p className = {`e.completed?"completed":"" `}>{e.task}</p>
+                        </div>
+                        <div className='col-xl-1 mr-2'>
                         <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
+                        </div>
+                        <div className='col-xl-3 mr-2'>
                         <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
+                        </div>
                     </div>
-                    <div key={i} className= "d-flex justify-content-between m-3">
-                    <p className = {e.completed?"completed":""}>{e.i}</p>
-                    <p className = {e.completed?"completed":""}>{e.task}</p>
-                    <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
-                    <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
-                </div>
                 </>
                 ))
             }
