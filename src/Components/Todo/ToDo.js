@@ -76,7 +76,7 @@ const ToDo = () => {
                         <p className = {e.completed?"completed":""}>{e.id}</p>
                         </div>
                         <div className='col-xl-5 mr-2'>
-                        <p className = {`e.completed?"completed":"" `}>{e.task}</p>
+                        <p className = {`${e.completed?"completed":""} `}>{e.task}</p>
                         </div>
                         <div className='col-xl-1 mr-2'>
                         <input type = "checkbox" checked={e.completed} onChange={()=>taskValidater(i)}/>
