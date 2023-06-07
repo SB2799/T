@@ -91,7 +91,7 @@ const ToDo = () => {
             </div>
         </div>
         <br/>
-        <h1>Number of Tasks Remaining: {taskValidaterLength()}</h1>
+        <h1>Number of Tasks Remaining: {taskValidaterLength()}.</h1>
     </div>
     </>)
 }
