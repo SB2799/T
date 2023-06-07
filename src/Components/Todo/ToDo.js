@@ -5,7 +5,7 @@ const ToDo = () => {
 
     const[form,setForm] = useState({task : ""})
     const[Add,setAdd] = useState([]);
-    const[ID,setID] = useState(31);
+    const[ID,setID] = useState(0);
 
     useEffect(()=> {
         const getApi = async () => {
@@ -19,12 +19,12 @@ const ToDo = () => {
             }))
 
             setAdd(TodoJsonInput)
+            setID(TodoJsonInput.length+1)
         }
         getApi();
     },[]);
 
     const AddData = ()=>{
-        // const newId = Add.length > 0 ? Add[Add.length - 1].id : 0;
         if(form.task !== "")
         {
             setAdd([...Add,{id: ID, task : form.task , completed : false}]);
@@ -97,5 +97,3 @@ const ToDo = () => {
 }
 
 export default ToDo
-
-
