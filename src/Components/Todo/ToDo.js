@@ -29,7 +29,6 @@ const ToDo = () => {
         {
             setAdd([...Add,{id: ID, task : form.task , completed : false}]);
         }
-        setID(ID+1);
         setForm({task : ""})
     }
 
@@ -47,9 +46,9 @@ const ToDo = () => {
         });
     };
 
-    const taskValidaterLength = () => {
+    const taskValidaterLength = (() => {
         return Add.filter((task) => !task.completed).length;
-    }
+    })
 
   return (<>
             <h1 className="main-heading">To Do List</h1>
