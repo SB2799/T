@@ -1,4 +1,4 @@
-.main-heading{
+.main-heading,.main-heading-locally{
     font-size: 2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 600;
@@ -6,6 +6,10 @@
     background-color: rgb(19, 157, 249);
     min-height: 24vh;
     padding-top: 2rem
+}
+
+.main-heading-locally{
+    margin-top: 100px;
 }
 
 .row{

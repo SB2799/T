@@ -88,7 +88,6 @@ const ToDo = () => {
             <div className = "Todostyle shadow-lg">
             {
                 Add.map((e,i) => (
-                    <>
                      <div key={e.id} className= "d-flex justify-content-between m-3">
                         <div className='col-xl-2 mr-2'>
                         <p className = {e.completed?"completed":""}>{e.id}</p>
@@ -103,7 +102,6 @@ const ToDo = () => {
                         <button className="btn btn-danger button-style" onClick={()=>removeData(i)}>Remove</button>
                         </div>
                     </div>
-                </>
                 ))
             }
             </div>
