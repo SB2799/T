@@ -2,3 +2,6 @@
   text-align: center;
 }
 
+.custom-flex{
+  flex-basis: calc(80% - 5rem);
+}

@@ -1,28 +1,46 @@
 import React, {useState, useEffect} from 'react'
 import "./ToDo.css"
+import axios from 'axios';
+
+const localStorageGet = () => {
+    const data = localStorage.getItem("Add");
+    if(data){
+      return JSON.parse(data);
+    }
+    else{
+      return [];
+    }
+  }
 
 const ToDo = () => {
 
     const[form,setForm] = useState({task : ""})
-    const[Add,setAdd] = useState([]);
+    const[Add,setAdd] = useState(localStorageGet());
     const[ID,setID] = useState(0);
 
     useEffect(()=> {
+        try{
         const getApi = async () => {
-            const TodoApi = await fetch("https://dummyjson.com/todos");
-            const TodoJson = await TodoApi.json();
+            const TodoApi = await axios.get("https://dummyjson.com/todos");
 
-            const TodoJsonInput = TodoJson.todos.map((props)=>({
+            const TodoApiInput = TodoApi.data.todos.map((props)=>({
                 id : props.id,
                 task : props.todo,
                 completed : props.completed,
             }))
 
-            setAdd(TodoJsonInput)
-            setID(TodoJsonInput.length+1)
+            setAdd(TodoApiInput)
+            setID(TodoApiInput.length+1)
         }
         getApi();
+    }catch(e){
+        alert('Failed to fetch data from API');
+    }
     },[]);
+
+    useEffect(() => {
+        localStorage.setItem("Add", JSON.stringify(Add));
+    },[Add])
 
     const AddData = ()=>{
         if(form.task !== "")
@@ -30,6 +48,7 @@ const ToDo = () => {
             setAdd([...Add,{id: ID, task : form.task , completed : false}]);
         }
         setForm({task : ""})
+        setID(ID+1);
     }
 
     const removeData = (i) => {
@@ -74,7 +93,7 @@ const ToDo = () => {
                         <div className='col-xl-2 mr-2'>
                         <p className = {e.completed?"completed":""}>{e.id}</p>
                         </div>
-                        <div className='col-xl-5 mr-2'>
+                        <div className='col-xl-5 mr-2 custom-flex'>
                         <p className = {`${e.completed?"completed":""} `}>{e.task}</p>
                         </div>
                         <div className='col-xl-1 mr-2'>
